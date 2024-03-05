@@ -46,7 +46,7 @@ describe('Funcionalidade: Login', () => {
         
     });
 
-    it.only('Deve fazer login com sucesso - Usando Fixture', () => {
+    it('Deve fazer login com sucesso - Usando Fixture', () => {
         cy.fixture('perfil').then( dados => {
             cy.get('#username').type(dados.usuario, { log:false})
             cy.get('#password').type(dados.senha, {log:false})
@@ -54,6 +54,12 @@ describe('Funcionalidade: Login', () => {
             cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain' , 'Olá, coutox2000 (não é coutox2000? Sair)')
     
         })
+        
+    });
+
+    it.only('Deve fazer login com sucesso - usando Comandos Customizados', () => {
+        cy.login('coutox2000@gmail.com', 'Ebacshop@10')
+        cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain' , 'Olá, coutox2000 (não é coutox2000? Sair)')
         
     });
 
